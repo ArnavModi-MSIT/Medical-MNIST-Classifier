@@ -1,5 +1,3 @@
-Medical MNIST Image Classification
-
 This project demonstrates the classification of medical images into different categories using a Convolutional Neural Network (CNN). The dataset used is the Medical MNIST Dataset, which contains images from six categories: AbdomenCT, BreastMRI, ChestCT, CXR, Hand, and HeadCT.
 
 Project Features
