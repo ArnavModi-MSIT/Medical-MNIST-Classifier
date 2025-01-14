@@ -4,26 +4,21 @@ import cv2
 from sklearn.preprocessing import LabelEncoder
 import os
 
-# Load the model
 model = load_model('medical_mnist_cnn_model.keras')
 
-# Define your class labels (same order as during training)
-class_labels = ['AbdomenCT', 'BreastMRI', 'ChestCT', 'Hand', 'HeadCT']  # Update with your actual class names
+class_labels = ['AbdomenCT', 'BreastMRI', 'ChestCT', 'Hand', 'HeadCT']
 label_encoder = LabelEncoder()
-label_encoder.fit(class_labels)  # Fit the encoder with the correct labels
+label_encoder.fit(class_labels)
 
-# Function to preprocess an image
 def preprocess_image(image_path):
     img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-    img = np.expand_dims(img, axis=-1)  # Add channel dimension
-    img = np.expand_dims(img, axis=0)   # Add batch dimension
+    img = np.expand_dims(img, axis=-1)
+    img = np.expand_dims(img, axis=0)
     return img
 
-# Test on a new image
-image_path = r"C:\Coding\Medical MNIST\Images\ChestCT\001246.jpeg"  # Update with your image path
+image_path = r"C:\Coding\Medical MNIST\Images\ChestCT\001246.jpeg"
 new_image = preprocess_image(image_path)
 
-# Make a prediction
 prediction = model.predict(new_image)
 predicted_class_index = np.argmax(prediction)
 predicted_label = label_encoder.inverse_transform([predicted_class_index])[0]
